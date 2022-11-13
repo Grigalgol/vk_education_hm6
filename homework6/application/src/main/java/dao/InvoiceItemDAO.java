@@ -45,7 +45,7 @@ public class InvoiceItemDAO implements DAO<InvoiceItem> {
     }
 
     @Override
-    public @NotNull List<@NotNull InvoiceItem> all() throws ParseException {
+    public @NotNull List<@NotNull InvoiceItem> all(){
         List<InvoiceItem> allInvoiceItems = new ArrayList<>();
         Result<InvoiceItemRecord> result = context.fetch(Tables.INVOICE_ITEM);
         for (var record : result) {
