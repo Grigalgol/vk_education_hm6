@@ -10,11 +10,50 @@ import entity.Product;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
         FlywayInitializer.initDb();
+
+        ReportManager reportManager = new ReportManager();
+
+        System.out.println("Report 1:");
+        System.out.println("----------------------------------------------------");
+        List<Organization> list = reportManager.getFirstTenOrganizationByDeliveredProduct();
+        list.forEach(System.out::println);
+        System.out.println("----------------------------------------------------\n");
+
+//        System.out.println("Report 2:");
+//        System.out.println("----------------------------------------------------");
+//        Map<Integer, Integer> hashMap = new HashMap<>();
+//        hashMap.put(100, 4);
+//        hashMap.put(201, 1);
+//        List<Organization> list2 = reportManager.getOrganizationWithSumDeliveredProductIsMoreCount(hashMap);
+//        list2.forEach(System.out::println);
+//        System.out.println("----------------------------------------------------\n");
+//
+        Date start = new Date(122, 10, 5);
+        Date end = new Date(122, 10, 9);
+        System.out.println("Report 3:");
+        System.out.println("----------------------------------------------------");
+        System.out.println(reportManager.getCountAndSumProductByDayInPeriod(start, end));
+        System.out.println("----------------------------------------------------\n");
+
+        System.out.println("Report 4:");
+        System.out.println("----------------------------------------------------");
+        double avg = reportManager.getAveragePrice(201, start, end);
+        System.out.println(avg);
+        System.out.println("----------------------------------------------------\n");
+
+        System.out.println("Report 5:");
+        System.out.println("----------------------------------------------------");
+        System.out.println(reportManager.getListOfProductDeliveredByOrgFOrPeriod(start, end));
+        System.out.println("----------------------------------------------------\n");
+
+
 
         ProductDAO productDAO = new ProductDAO();
         System.out.println("ProductDAO:");

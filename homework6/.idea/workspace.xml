@@ -117,8 +117,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.homework6:jooq_generated [generateJooq]" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.homework6:jooq_generated [generateJooq]" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668324694322</updated>
-      <workItem from="1668324696466" duration="9421000" />
+      <workItem from="1668324696466" duration="18630000" />
     </task>
     <servers />
   </component>
@@ -147,5 +147,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/homework6$Main.ic" NAME="Main Coverage Results" MODIFIED="1668343912131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
