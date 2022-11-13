@@ -26,15 +26,15 @@ public class Main {
         list.forEach(System.out::println);
         System.out.println("----------------------------------------------------\n");
 
-//        System.out.println("Report 2:");
-//        System.out.println("----------------------------------------------------");
-//        Map<Integer, Integer> hashMap = new HashMap<>();
-//        hashMap.put(100, 4);
-//        hashMap.put(201, 1);
-//        List<Organization> list2 = reportManager.getOrganizationWithSumDeliveredProductIsMoreCount(hashMap);
-//        list2.forEach(System.out::println);
-//        System.out.println("----------------------------------------------------\n");
-//
+        System.out.println("Report 2:");
+        System.out.println("----------------------------------------------------");
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        hashMap.put(100, 4);
+        hashMap.put(201, 1);
+        List<Organization> list2 = reportManager.getOrganizationWithSumDeliveredProductIsMoreCount(hashMap);
+        list2.forEach(System.out::println);
+        System.out.println("----------------------------------------------------\n");
+
         Date start = new Date(122, 10, 5);
         Date end = new Date(122, 10, 9);
         System.out.println("Report 3:");

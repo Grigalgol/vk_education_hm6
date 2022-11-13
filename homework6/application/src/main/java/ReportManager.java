@@ -1,14 +1,10 @@
 import commons.JDBCCredentials;
 import entity.Organization;
 import entity.Product;
-import generated.Tables;
-import generated.tables.records.OrganizationRecord;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.*;
 import org.jooq.impl.DSL;
-import org.jooq.impl.Internal;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -53,52 +49,36 @@ public class ReportManager {
         return organizations;
     }
 
-    //todo доделать
     //Выбрать поставщиков с суммой поставленного товара выше указанного количества
     //(товар и его количество должны допускать множественное указание).
     //Я до конца не понял что значит уточнение в скобках,но я решил сделать реализацию через OR (хотя можно понять и как AND)
-    private final static String GET_ORGANIZATION_WITH_SUM_MORE_SQL = "SELECT name, inn, " +
-            "payment_account FROM " +
-            "(SELECT name, inn, payment_account, product, SUM(count) as sum " +
-            "FROM organization " +
-            "JOIN invoice ON invoice.organization_sender = organization.inn " +
-            "JOIN invoice_item ON invoice_item.id_invoice = invoice.id " +
-            "GROUP BY 1, 2, 3, 4) as x WHERE ";
-
     public @NotNull List<@NotNull Organization> getOrganizationWithSumDeliveredProductIsMoreCount(Map<Integer, Integer> map) {
-        List<Organization> organizations = new ArrayList<>();
-        SelectQuery<?> query = context.selectQuery();
-        Table table = context
-                .select(ORGANIZATION.NAME, ORGANIZATION.INN, ORGANIZATION.PAYMENT_ACCOUNT, INVOICE_ITEM.PRODUCT, DSL.sum(INVOICE_ITEM.COUNT).as("sum"))
-                .from(ORGANIZATION)
-                .join(INVOICE).on(ORGANIZATION.INN.eq(INVOICE.ORGANIZATION_SENDER))
-                .join(INVOICE_ITEM).on(INVOICE.ID.eq(INVOICE_ITEM.ID_INVOICE))
-                .groupBy(ORGANIZATION.NAME, ORGANIZATION.INN, ORGANIZATION.PAYMENT_ACCOUNT, INVOICE_ITEM.PRODUCT).asTable();
-        query.addSelect(ORGANIZATION.NAME, ORGANIZATION.INN, ORGANIZATION.PAYMENT_ACCOUNT);
-        query.addFrom(table);
-
+        ArrayList<Organization> result = new ArrayList<>();
+        var recordSelectQuery= context.selectQuery();
+        recordSelectQuery.addSelect(ORGANIZATION.INN, ORGANIZATION.NAME, ORGANIZATION.PAYMENT_ACCOUNT, INVOICE_ITEM.PRODUCT, DSL.sum(INVOICE_ITEM.COUNT));
+        recordSelectQuery.addFrom(ORGANIZATION);
+        recordSelectQuery.addJoin(INVOICE,ORGANIZATION.INN.eq(INVOICE.ORGANIZATION_SENDER));
+        recordSelectQuery.addJoin(INVOICE_ITEM, INVOICE.ID.eq(INVOICE_ITEM.ID_INVOICE));
+        boolean isFirst = true;
         Condition condition = null;
-        boolean first = true;
-        for (var entry : map.entrySet()) {
-            if (first) {
-                condition = table.field(INVOICE_ITEM.PRODUCT).eq(entry.getKey()).and(table.field(DSL.sum(INVOICE_ITEM.COUNT)).greaterThan(BigDecimal.valueOf(entry.getValue())));
-            } else {
-                first = false;
-                condition = condition.or(table.field(INVOICE_ITEM.PRODUCT).eq(entry.getKey()).and(table.field(DSL.sum(INVOICE_ITEM.COUNT)).greaterThan(BigDecimal.valueOf(entry.getValue()))));
+        for (var entry: map.entrySet()){
+            if (isFirst) {
+                condition=INVOICE_ITEM.PRODUCT.eq(entry.getKey());
+                isFirst = false;
             }
+            else condition= condition.or(INVOICE_ITEM.PRODUCT.eq(entry.getKey()));
         }
-        query.addConditions(condition);
-//        map.forEach((code, sum) ->
-//                sql.append("x.product = " + "?" + " AND x.sum > " + "?" + " OR ")
-//                record.x.
-//        );
-
-        var result = query.fetch();
-        for (var res : result) {
-            Organization organization = new Organization(res.get(ORGANIZATION.NAME), res.get(ORGANIZATION.INN), res.get(ORGANIZATION.PAYMENT_ACCOUNT));
-            organizations.add(organization);
+        recordSelectQuery.addConditions(condition);
+        recordSelectQuery.addGroupBy(ORGANIZATION.INN,INVOICE_ITEM.PRODUCT);
+        for (var record: recordSelectQuery.fetch()){
+            Organization organization = new Organization(record.get(ORGANIZATION.NAME), record.get(ORGANIZATION.INN),  record.get(ORGANIZATION.PAYMENT_ACCOUNT));
+            int productId = record.getValue(INVOICE_ITEM.PRODUCT);
+            Integer code =  map.keySet().stream().filter(productCode -> productId == productCode).findFirst().orElse(null);
+            int productSumCount = record.getValue(DSL.sum(INVOICE_ITEM.COUNT)).intValue();
+            if (productSumCount >= map.get(code) && !result.contains(organization))
+                result.add(organization);
         }
-        return organizations;
+        return result;
     }
 
 
@@ -161,7 +141,7 @@ public class ReportManager {
         LocalDate e = LocalDate.ofInstant(end.toInstant(), ZoneId.systemDefault());
 
         var record = context
-                .select(DSL.avg(INVOICE_ITEM.PRICE).as("avg_price"))
+                .select(DSL.avg(INVOICE_ITEM.PRICE))
                 .from(INVOICE_ITEM)
                 .join(INVOICE).on(INVOICE_ITEM.ID_INVOICE.eq(INVOICE.ID))
                 .where(INVOICE.DATE.between(s, e))

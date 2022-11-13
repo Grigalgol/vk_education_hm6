@@ -89,7 +89,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.ProductDAOTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="homework6.application.main" />
@@ -191,11 +191,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.InvoiceItemDAOTest" />
         <item itemvalue="Gradle.ProductDAOTest" />
         <item itemvalue="Gradle.OrganizationDAOTest" />
+        <item itemvalue="Gradle.InvoiceItemDAOTest" />
         <item itemvalue="Gradle.InvoiceDAOTest" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +208,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668324694322</updated>
       <workItem from="1668324696466" duration="20205000" />
-      <workItem from="1668350088336" duration="3324000" />
+      <workItem from="1668350088336" duration="6722000" />
     </task>
     <servers />
   </component>
