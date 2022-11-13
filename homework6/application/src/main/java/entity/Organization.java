@@ -12,6 +12,6 @@ public class Organization {
 
     private @NotNull String name;
     private @NotNull int INN;
-    private @NotNull int paymentAccount;
+    private @NotNull String paymentAccount;
 
 }

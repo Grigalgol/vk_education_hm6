@@ -8,7 +8,7 @@ import generated.Keys;
 import generated.Public;
 import generated.tables.records.InvoiceRecord;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class Invoice extends TableImpl<InvoiceRecord> {
     /**
      * The column <code>public.invoice.date</code>.
      */
-    public final TableField<InvoiceRecord, LocalDateTime> DATE = createField(DSL.name("date"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
+    public final TableField<InvoiceRecord, LocalDate> DATE = createField(DSL.name("date"), SQLDataType.LOCALDATE.nullable(false), this, "");
 
     /**
      * The column <code>public.invoice.organization_sender</code>.
@@ -151,7 +151,7 @@ public class Invoice extends TableImpl<InvoiceRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Integer, LocalDateTime, Integer> fieldsRow() {
+    public Row3<Integer, LocalDate, Integer> fieldsRow() {
         return (Row3) super.fieldsRow();
     }
 }

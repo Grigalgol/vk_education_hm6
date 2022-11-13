@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
-import java.security.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import java.security.Timestamp;
 public class Invoice {
 
     private @NotNull int id;
-    private @NotNull Timestamp date;
+    private @NotNull Date date;
     private @NotNull int organizationSender;
 
 }

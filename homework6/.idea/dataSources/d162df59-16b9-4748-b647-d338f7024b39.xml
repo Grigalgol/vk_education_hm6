@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.43">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>2846</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2976</IntrospectionStateNumber>
       <ServerVersion>15.0</ServerVersion>
       <StartupTime>1668172219</StartupTime>
       <TimeZones>true ACDT
@@ -819,7 +819,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>2846</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2976</IntrospectionStateNumber>
       <ObjectId>57504</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4241,38 +4241,38 @@ false Zulu
     <schema id="269" parent="7" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2846</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2976</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <table id="270" parent="269" name="flyway_schema_history">
-      <ObjectId>81933</ObjectId>
-      <StateNumber>2841</StateNumber>
+      <ObjectId>82563</ObjectId>
+      <StateNumber>2965</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="271" parent="269" name="invoice">
-      <ObjectId>81956</ObjectId>
-      <StateNumber>2842</StateNumber>
+      <ObjectId>82586</ObjectId>
+      <StateNumber>2966</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="272" parent="269" name="invoice_item">
-      <ObjectId>81966</ObjectId>
-      <StateNumber>2842</StateNumber>
+      <ObjectId>82596</ObjectId>
+      <StateNumber>2966</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="273" parent="269" name="organization">
-      <ObjectId>81949</ObjectId>
-      <StateNumber>2842</StateNumber>
+      <ObjectId>82579</ObjectId>
+      <StateNumber>2966</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="274" parent="269" name="product">
-      <ObjectId>81942</ObjectId>
-      <StateNumber>2842</StateNumber>
+      <ObjectId>82572</ObjectId>
+      <StateNumber>2966</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4280,47 +4280,47 @@ false Zulu
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="276" parent="270" name="version">
       <DataType>varchar(50)|0s</DataType>
       <Position>2</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="277" parent="270" name="description">
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="278" parent="270" name="type">
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="279" parent="270" name="script">
       <DataType>varchar(1000)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="280" parent="270" name="checksum">
       <DataType>integer|0s</DataType>
       <Position>6</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="281" parent="270" name="installed_by">
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="282" parent="270" name="installed_on">
@@ -4328,228 +4328,228 @@ false Zulu
       <DefaultExpression>now()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>1114</TypeId>
     </column>
     <column id="283" parent="270" name="execution_time">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="284" parent="270" name="success">
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <TypeId>16</TypeId>
     </column>
     <index id="285" parent="270" name="flyway_schema_history_pk">
       <ColNames>installed_rank</ColNames>
-      <ObjectId>81939</ObjectId>
+      <ObjectId>82569</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2841</StateNumber>
+      <StateNumber>2965</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <index id="286" parent="270" name="flyway_schema_history_s_idx">
       <ColNames>success</ColNames>
-      <ObjectId>81941</ObjectId>
-      <StateNumber>2841</StateNumber>
+      <ObjectId>82571</ObjectId>
+      <StateNumber>2965</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="287" parent="270" name="flyway_schema_history_pk">
-      <ObjectId>81940</ObjectId>
+      <ObjectId>82570</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2841</StateNumber>
-      <UnderlyingIndexId>81939</UnderlyingIndexId>
+      <StateNumber>2965</StateNumber>
+      <UnderlyingIndexId>82569</UnderlyingIndexId>
     </key>
     <column id="288" parent="271" name="id">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="289" parent="271" name="date">
-      <DataType>timestamp|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2842</StateNumber>
-      <TypeId>1114</TypeId>
+      <StateNumber>2966</StateNumber>
+      <TypeId>1082</TypeId>
     </column>
     <column id="290" parent="271" name="organization_sender">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <foreign-key id="291" parent="271" name="invoice_organization_sender_fkey">
       <ColNames>organization_sender</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>81961</ObjectId>
+      <ObjectId>82591</ObjectId>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>inn</RefColNames>
       <RefColPositions>2</RefColPositions>
-      <StateNumber>2842</StateNumber>
-      <RefTableId>81949</RefTableId>
+      <StateNumber>2966</StateNumber>
+      <RefTableId>82579</RefTableId>
       <RefTableName>organization</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <index id="292" parent="271" name="invoice_pk">
       <ColNames>id</ColNames>
-      <ObjectId>81959</ObjectId>
+      <ObjectId>82589</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="293" parent="271" name="invoice_pk">
-      <ObjectId>81960</ObjectId>
+      <ObjectId>82590</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
-      <UnderlyingIndexId>81959</UnderlyingIndexId>
+      <StateNumber>2966</StateNumber>
+      <UnderlyingIndexId>82589</UnderlyingIndexId>
     </key>
     <column id="294" parent="272" name="id">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="295" parent="272" name="price">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="296" parent="272" name="product">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="297" parent="272" name="count">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="298" parent="272" name="id_invoice">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <foreign-key id="299" parent="272" name="invoice_item_product_fkey">
       <ColNames>product</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>81971</ObjectId>
+      <ObjectId>82601</ObjectId>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>internal_code</RefColNames>
       <RefColPositions>2</RefColPositions>
-      <StateNumber>2842</StateNumber>
-      <RefTableId>81942</RefTableId>
+      <StateNumber>2966</StateNumber>
+      <RefTableId>82572</RefTableId>
       <RefTableName>product</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <foreign-key id="300" parent="272" name="invoice_item_id_invoice_fkey">
       <ColNames>id_invoice</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>81976</ObjectId>
+      <ObjectId>82606</ObjectId>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <StateNumber>2842</StateNumber>
-      <RefTableId>81956</RefTableId>
+      <StateNumber>2966</StateNumber>
+      <RefTableId>82586</RefTableId>
       <RefTableName>invoice</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <index id="301" parent="272" name="invoice_item_pk">
       <ColNames>id</ColNames>
-      <ObjectId>81969</ObjectId>
+      <ObjectId>82599</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="302" parent="272" name="invoice_item_pk">
-      <ObjectId>81970</ObjectId>
+      <ObjectId>82600</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
-      <UnderlyingIndexId>81969</UnderlyingIndexId>
+      <StateNumber>2966</StateNumber>
+      <UnderlyingIndexId>82599</UnderlyingIndexId>
     </key>
     <column id="303" parent="273" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="304" parent="273" name="inn">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="305" parent="273" name="payment_account">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="306" parent="273" name="organization_pk">
       <ColNames>inn</ColNames>
-      <ObjectId>81954</ObjectId>
+      <ObjectId>82584</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="307" parent="273" name="organization_pk">
-      <ObjectId>81955</ObjectId>
+      <ObjectId>82585</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
-      <UnderlyingIndexId>81954</UnderlyingIndexId>
+      <StateNumber>2966</StateNumber>
+      <UnderlyingIndexId>82584</UnderlyingIndexId>
     </key>
     <column id="308" parent="274" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="309" parent="274" name="internal_code">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <index id="310" parent="274" name="product_pk">
       <ColNames>internal_code</ColNames>
-      <ObjectId>81947</ObjectId>
+      <ObjectId>82577</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
+      <StateNumber>2966</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="311" parent="274" name="product_pk">
-      <ObjectId>81948</ObjectId>
+      <ObjectId>82578</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2842</StateNumber>
-      <UnderlyingIndexId>81947</UnderlyingIndexId>
+      <StateNumber>2966</StateNumber>
+      <UnderlyingIndexId>82577</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

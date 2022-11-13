@@ -16,7 +16,7 @@ CREATE TABLE organization
 CREATE TABLE invoice
 (
     id                  INT       NOT NULL,
-    date                TIMESTAMP NOT NULL,
+    date                DATE NOT NULL,
     organization_sender INT       NOT NULL REFERENCES organization (inn) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT invoice_pk PRIMARY KEY (id)
 );

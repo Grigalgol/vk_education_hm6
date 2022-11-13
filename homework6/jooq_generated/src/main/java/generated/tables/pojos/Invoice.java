@@ -5,7 +5,7 @@ package generated.tables.pojos;
 
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 /**
@@ -16,9 +16,9 @@ public class Invoice implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final Integer       id;
-    private final LocalDateTime date;
-    private final Integer       organizationSender;
+    private final Integer   id;
+    private final LocalDate date;
+    private final Integer   organizationSender;
 
     public Invoice(Invoice value) {
         this.id = value.id;
@@ -27,9 +27,9 @@ public class Invoice implements Serializable {
     }
 
     public Invoice(
-        Integer       id,
-        LocalDateTime date,
-        Integer       organizationSender
+        Integer   id,
+        LocalDate date,
+        Integer   organizationSender
     ) {
         this.id = id;
         this.date = date;
@@ -46,7 +46,7 @@ public class Invoice implements Serializable {
     /**
      * Getter for <code>public.invoice.date</code>.
      */
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
