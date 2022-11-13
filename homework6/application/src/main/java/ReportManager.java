@@ -185,10 +185,9 @@ public class ReportManager {
         var record = context
                 .select(ORGANIZATION.NAME, ORGANIZATION.INN, ORGANIZATION.PAYMENT_ACCOUNT, PRODUCT.NAME, PRODUCT.INTERNAL_CODE)
                 .from(ORGANIZATION)
-                .leftJoin(INVOICE).on(INVOICE.ORGANIZATION_SENDER.eq(ORGANIZATION.INN))
+                .leftJoin(INVOICE).on(INVOICE.ORGANIZATION_SENDER.eq(ORGANIZATION.INN).and((INVOICE.DATE.between(s, e))))
                 .leftJoin(INVOICE_ITEM).on(INVOICE_ITEM.ID_INVOICE.eq(INVOICE.ID))
-                .leftJoin(PRODUCT).on(PRODUCT.INTERNAL_CODE.eq(INVOICE_ITEM.PRODUCT))
-                .where(INVOICE.DATE.between(s, e).or(INVOICE.DATE.isNull()));
+                .leftJoin(PRODUCT).on(PRODUCT.INTERNAL_CODE.eq(INVOICE_ITEM.PRODUCT));
 
         for (var result : record) {
             Organization organization = new Organization(
