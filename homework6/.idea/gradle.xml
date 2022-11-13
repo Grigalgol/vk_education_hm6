@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/application" />
+            <option value="$PROJECT_DIR$/jooq_generated" />
           </set>
         </option>
       </GradleProjectSettings>
