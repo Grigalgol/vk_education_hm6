@@ -19,60 +19,59 @@ import java.util.List;
 public class OrganizationDAO implements DAO<Organization> {
 
     private static final @NotNull JDBCCredentials CREDS = JDBCCredentials.DEFAULT;
-    private final @NotNull Connection connection;
-    private final @NotNull DSLContext context;
-
-    public OrganizationDAO(@NotNull Connection connection) {
-        this.connection = connection;
-        this.context = DSL.using(connection, SQLDialect.POSTGRES);
-    }
-
-    public OrganizationDAO() {
-        try {
-            this.connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
-            this.context = DSL.using(connection, SQLDialect.POSTGRES);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
-    public @NotNull Organization get(int id) {
+    public @NotNull Organization get(int id) throws SQLException {
+        var connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
+        var context = DSL.using(connection, SQLDialect.POSTGRES);
         OrganizationRecord record = context.fetchOne(Tables.ORGANIZATION, Tables.ORGANIZATION.INN.eq(id));
         if (record != null) return new Organization(record.getName(), record.getInn(), record.getPaymentAccount());
+        connection.close();
         return new Organization();
     }
 
     @Override
-    public @NotNull List<@NotNull Organization> all() {
+    public @NotNull List<@NotNull Organization> all() throws SQLException {
+        var connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
+        var context = DSL.using(connection, SQLDialect.POSTGRES);
         List<Organization> allOrganizations = new ArrayList<>();
         Result<OrganizationRecord> result = context.fetch(Tables.ORGANIZATION);
         for (var record : result) {
             allOrganizations.add(new Organization(record.getName(), record.getInn(), record.getPaymentAccount()));
         }
+        connection.close();
         return allOrganizations;
     }
 
     @Override
-    public void save(@NotNull Organization entity) {
+    public void save(@NotNull Organization entity) throws SQLException {
+        var connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
+        var context = DSL.using(connection, SQLDialect.POSTGRES);
         context.newRecord(Tables.ORGANIZATION)
                 .setInn(entity.getINN())
                 .setName(entity.getName())
                 .setPaymentAccount(entity.getPaymentAccount())
                 .store();
+        connection.close();
     }
 
     @Override
-    public void update(@NotNull Organization entity) {
+    public void update(@NotNull Organization entity) throws SQLException {
+        var connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
+        var context = DSL.using(connection, SQLDialect.POSTGRES);
         OrganizationRecord record = context.fetchOne(Tables.ORGANIZATION, Tables.ORGANIZATION.INN.eq(entity.getINN()));
         if (record == null) throw new IllegalStateException("Organization with id " + entity.getINN() + " not found");
         record.setName(entity.getName()).setPaymentAccount(entity.getPaymentAccount()).store();
+        connection.close();
     }
 
     @Override
-    public void delete(@NotNull Organization entity) {
+    public void delete(@NotNull Organization entity) throws SQLException {
+        var connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
+        var context = DSL.using(connection, SQLDialect.POSTGRES);
         context.delete(Tables.ORGANIZATION)
                 .where(Tables.ORGANIZATION.INN.eq(entity.getINN()))
                 .execute();
+        connection.close();
     }
 }

@@ -8,6 +8,7 @@ import entity.InvoiceItem;
 import entity.Organization;
 import entity.Product;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, SQLException {
         FlywayInitializer.initDb();
 
         ReportManager reportManager = new ReportManager();

@@ -90,13 +90,6 @@
   }
 }</component>
   <component name="RunManager" selected="Gradle.ProductDAOTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="homework6.application.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="InvoiceDAOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -189,13 +182,36 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ReportManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":application:test" />
+            <option value="--tests" />
+            <option value="&quot;ReportManagerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.ProductDAOTest" />
         <item itemvalue="Gradle.OrganizationDAOTest" />
         <item itemvalue="Gradle.InvoiceItemDAOTest" />
         <item itemvalue="Gradle.InvoiceDAOTest" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.ReportManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +224,9 @@
       <option name="presentableId" value="Default" />
       <updated>1668324694322</updated>
       <workItem from="1668324696466" duration="20205000" />
-      <workItem from="1668350088336" duration="6722000" />
+      <workItem from="1668350088336" duration="7269000" />
+      <workItem from="1668457762012" duration="32000" />
+      <workItem from="1668634137596" duration="2736000" />
     </task>
     <servers />
   </component>

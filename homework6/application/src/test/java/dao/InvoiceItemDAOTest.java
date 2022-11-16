@@ -1,15 +1,11 @@
 package dao;
 
-import commons.JDBCCredentials;
+
 import entity.InvoiceItem;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,37 +13,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InvoiceItemDAOTest {
     private static InvoiceItemDAO dao;
-    private static final JDBCCredentials CREDS = JDBCCredentials.DEFAULT;
 
     @BeforeAll
     static void setUp() {
-        try {
-            Connection connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
-            connection.setAutoCommit(false);
-            dao = new InvoiceItemDAO(connection);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @AfterAll
-    static void tearDown() {
-        try {
-            Connection connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
-            connection.setAutoCommit(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dao = new InvoiceItemDAO();
     }
 
     @Test
-    void get() {
+    void get() throws SQLException {
         InvoiceItem invoiceItem = new InvoiceItem(1, 1, 200, 2000, 100);
         assertEquals(invoiceItem, dao.get(invoiceItem.getId()));
     }
 
     @Test
-    void all(){
+    void all() throws SQLException {
         List<InvoiceItem> list = new ArrayList<>();
         list.add(new InvoiceItem(1, 1, 200, 2000, 100));
         list.add(new InvoiceItem(2, 2, 201, 10000, 250));
@@ -55,11 +34,18 @@ public class InvoiceItemDAOTest {
         list.add(new InvoiceItem(3, 3, 200, 8500, 300));
         list.add(new InvoiceItem(4, 4, 100, 25000, 5));
         list.add(new InvoiceItem(5, 5, 101, 3000, 10));
+        list.add(new InvoiceItem(7, 6, 101, 2000, 11));
+        list.add(new InvoiceItem(8, 7, 100, 5000, 102));
+        list.add(new InvoiceItem(9, 8, 201, 15000, 500));
+        list.add(new InvoiceItem(10, 9, 201, 3000, 152));
+        list.add(new InvoiceItem(11, 10, 200,  10, 1));
+        list.add(new InvoiceItem(12, 11, 200, 100, 4));
+        list.add(new InvoiceItem(13, 12, 101, 16000, 357));
         assertEquals(list, dao.all());
     }
 
     @Test
-    void save() {
+    void save() throws SQLException {
         InvoiceItem invoiceItem = new InvoiceItem(99, 1, 200, 10000, 500);
         dao.save(invoiceItem);
         assertEquals(invoiceItem, dao.get(invoiceItem.getId()));
@@ -67,7 +53,7 @@ public class InvoiceItemDAOTest {
     }
 
     @Test
-    void update() {
+    void update() throws SQLException {
         InvoiceItem invoiceItem = new InvoiceItem(99, 1, 200, 10000, 500);
         dao.save(invoiceItem);
         invoiceItem.setPrice(5000);
@@ -78,7 +64,7 @@ public class InvoiceItemDAOTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws SQLException {
         InvoiceItem invoiceItem = new InvoiceItem(99, 1, 200, 10000, 500);
         dao.save(invoiceItem);
         dao.delete(invoiceItem);

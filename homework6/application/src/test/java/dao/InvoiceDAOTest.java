@@ -1,13 +1,10 @@
 package dao;
 
-import commons.JDBCCredentials;
 import entity.Invoice;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -20,32 +17,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InvoiceDAOTest {
 
     private static InvoiceDAO dao;
-    private static final JDBCCredentials CREDS = JDBCCredentials.DEFAULT;
 
     @BeforeAll
     static void setUp() {
-        try {
-            Connection connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
-            connection.setAutoCommit(false);
-            dao = new InvoiceDAO(connection);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dao = new InvoiceDAO();
     }
 
-    @AfterAll
-    static void tearDown() {
-        try {
-            Connection connection = DriverManager.getConnection(CREDS.url(), CREDS.login(), CREDS.password());
-            connection.setAutoCommit(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Test
-    void get() {
-        Date date = new Date(122, 10, 5);
+    void get() throws SQLException {
+        Date date = new java.sql.Date(122, 10, 5);
         Invoice invoice = new Invoice(1, date, 12345);
         assertEquals(invoice, dao.get(invoice.getId()));
     }
@@ -53,21 +34,28 @@ public class InvoiceDAOTest {
     @Test
     void all() throws ParseException {
         List<Invoice> list = new ArrayList<>();
-        Date date1 = new Date(122, 10, 5);
-        Date date2 = new Date(122, 10, 6);
-        Date date3 = new Date(122, 10, 7);
-        Date date4 = new Date(122, 0, 1);
-        Date date5 = new Date(122, 0, 2);
+        Date date1 = new java.sql.Date(122, 10, 5);
+        Date date2 = new java.sql.Date(122, 10, 6);
+        Date date3 = new java.sql.Date(122, 10, 7);
+        Date date4 = new java.sql.Date(122, 0, 1);
+        Date date5 = new java.sql.Date(122, 0, 2);
         list.add(new Invoice(1, date1, 12345));
         list.add(new Invoice(2, date2, 12345));
         list.add(new Invoice(3, date3, 12345));
         list.add(new Invoice(4, date4, 55555));
         list.add(new Invoice(5, date5, 55555));
+        list.add(new Invoice(6, date5, 98765));
+        list.add(new Invoice(7, date5, 56789));
+        list.add(new Invoice(8, date5, 66666));
+        list.add(new Invoice(9, date5, 77777));
+        list.add(new Invoice(10, date5, 88888));
+        list.add(new Invoice(11, date5, 54645));
+        list.add(new Invoice(12, date5, 54123));
         assertEquals(list, dao.all());
     }
 
     @Test
-    void save() {
+    void save() throws SQLException {
         Date date = new Date(122, 10, 5);
         Invoice invoice = new Invoice(99, date, 12345);
         dao.save(invoice);
@@ -76,9 +64,9 @@ public class InvoiceDAOTest {
     }
 
     @Test
-    void update() {
-        Date date = new Date(122, 10, 5);
-        Invoice invoice = new Invoice(99, date, 12345);
+    void update() throws SQLException {
+        Date date1 = new Date(122, 10, 5);
+        Invoice invoice = new Invoice(99, date1, 12345);
         dao.save(invoice);
         invoice.setOrganizationSender(55555);
         dao.update(invoice);
@@ -87,9 +75,9 @@ public class InvoiceDAOTest {
     }
 
     @Test
-    void delete() {
-        Date date = new Date(122, 10, 5);
-        Invoice invoice = new Invoice(99, date, 12345);
+    void delete() throws SQLException {
+        Date date1 = new Date(122, 10, 5);
+        Invoice invoice = new Invoice(99, date1, 12345);
         dao.save(invoice);
         dao.delete(invoice);
         assertNotEquals(invoice, dao.get(invoice.getId()));
